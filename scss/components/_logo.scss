@@ -5,8 +5,12 @@
   gap: 14px;
 
   @include abstracts.breakpoint(lg) {
-    width: 10px;
-    margin-left: 39px;
+    gap: 10px;
+    margin-left: 40px;
+  }
+
+  @include abstracts.breakpoint(sm) {
+    margin-left: 0;
   }
 
   &__title {
