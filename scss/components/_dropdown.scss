@@ -3,24 +3,25 @@
 .dropdown {
   position: absolute;
   left: 0;
+
+  width: min(1240px, 100%);
   padding-top: 54px;
   display: none;
-  width: min(1240px, 100%);
 
   &__inner {
-    --inner-max-height: min(582px, 100vh - 158px);
     --inner-padding: 30px;
 
     position: relative;
-    padding: 30px;
+
+    padding: var(--inner-padding);
+
     border-radius: 20px;
     background: var(--dropdown-bg-color);
     box-shadow: 0px 40px 90px 20px var(--dropdown-shadow-color);
-    max-height: var(--inner-max-height);
 
     &::before {
+      content: url("../icons/dropdown-arrow.svg");
       position: absolute;
-      content: url("../icon/dropdown-arrow.svg");
       top: -13px;
       left: var(--arrow-left-pos);
       translate: -50%;
@@ -31,16 +32,16 @@
 
 .top-menu {
   --main-column-width: 292px;
+  --max-inner-height: calc(min(582px, 100vh - 158px) - var(--inner-padding) * 2);
 
-  height: calc(var(--inner-max-height) - (var(--inner-padding) * 2));
+  position: relative;
+
   &__main {
-    max-height: inherit;
     width: var(--main-column-width);
+    height: var(--max-inner-height);
     border-right: 1px solid var(--top-menu-border-color);
     overflow-y: auto;
   }
-
-  position: relative;
 }
 
 .menu-column {
@@ -52,38 +53,40 @@
   }
 
   &__icon {
+    position: relative;
+
+    flex-shrink: 0;
     width: 36px;
     height: 36px;
-    position: relative;
-    flex-shrink: 0;
 
     @include abstracts.breakpoint(xl) {
       display: none;
     }
   }
 
+  &__content {
+    flex: 1;
+  }
+
   &__icon-1 {
-    object-fit: contain;
     width: 30px;
     height: 30px;
+    object-fit: contain;
   }
 
   &__icon-2 {
-    object-fit: cover;
-    width: 24px;
-    height: 24px;
     position: absolute;
     right: 0;
     bottom: 0;
-    filter: var(--menu-column-icon);
-  }
 
-  &__content {
-    flex: 1;
-    margin-top: 5px;
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: var(--menu-column-icon-color);
   }
 
   &__heading {
+    margin-top: 4px;
     font-size: 1.6rem;
     font-weight: 500;
     line-height: 150%;
@@ -107,30 +110,30 @@
 
   &__link {
     display: block;
-    font-size: 1.4rem;
-    font-weight: 400;
-    line-height: 142.857%;
     padding: 7px 0;
+    font-size: 1.4rem;
+    line-height: 142.857%;
   }
 }
 
 .sub-menu {
   position: absolute;
   inset: 0 0 0 var(--main-column-width);
-  padding-left: var(--inner-padding);
-  // display: grid;
+
   display: none;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--inner-padding);
 
+  padding-left: var(--inner-padding);
+
   overflow-y: auto;
 
   &--not-main {
-    inset: initial;
     position: initial;
+    inset: initial;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    height: calc(var(--inner-max-height) - (var(--inner-padding) * 2));
+    height: var(--max-inner-height);
     padding-left: 0;
   }
 }
