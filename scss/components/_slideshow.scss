@@ -2,7 +2,7 @@
 
 .slideshow {
   position: relative;
-  margin: 40px 0;
+  // margin: 40px 0;
   &__inner {
     display: flex;
     overflow: hidden;
@@ -14,7 +14,7 @@
     flex-shrink: 0;
     padding-top: 34%;
 
-    @include abstracts.breakpoint(md) {
+    @include abstracts.screen(md) {
       padding-top: 50%;
     }
   }
